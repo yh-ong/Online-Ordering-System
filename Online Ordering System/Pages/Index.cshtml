@@ -1,10 +1,95 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="banner-container">
+    <div class="container banner-text">
+        <h1 class="banner-title">Welcome</h1>
+        <p class="banner-desc">Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
 </div>
+
+<section id="categories" class="container">
+    <div class="section-desc">
+        <h2>Categories</h2>
+        <p>description</p>
+    </div>
+    <div class="row text-center">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/broccoli.png" />
+                        <h5>Vegetable</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/thanksgiving.png" />
+                        <h5>Meat</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/apple.png" />
+                        <h5>Fruit</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/barbershop.png" />
+                        <h5>Shampoo</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/nut.png" />
+                        <h5>Vegetable</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <a href="#">
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/cute-clipart/64/000000/search.png" />
+                        <h5>See More</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="howitwork" class="container">
+    <div class="section-desc">
+        <h2>How it Work</h2>
+        <p>description</p>
+    </div>
+</section>
+
+<section id="testimonial" class="container">
+    <div class="section-desc">
+        <h2>Testimonial</h2>
+        <p>description</p>
+    </div>
+</section>
