@@ -4,68 +4,69 @@
     ViewData["title"] = "List";
 }
 
-    <div class="row">
-        <div class="col-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-3">
+                <h5 class="mb-3">Filters</h5>
+                <form>
+                    @{
+                        for (var i = 0; i < 3; i++)
+                        {
+                            <div class="filter_row mb-4">
+                                <div class="form-group">
+                                    <h6 class="text-muted mb-3">Categories</h6>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
-        <div class="col-8">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/320" class="card-img" alt="placeholder">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Company Name</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
+                    }
+                </form>
             </div>
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/320" class="card-img" alt="placeholder">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Company Name</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+            <div class="col-9 item-result">
+                <p>1 - 25 of 83 available</p>
+                @{
+                    string[] items = { "Fruit", "Vegetable", "Grocery", "Bread"};
+                    foreach (var item in items)
+                    {
+                        <div class="card mb-3">
+                            <a asp-area="" asp-page="/Product">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="https://via.placeholder.com/150" class="card-img" alt="placeholder">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@item </h5>
+                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            <div class="item-list-footer">
+                                                <span class="badge badge-secondary">Light</span>
+                                                <span class="badge badge-secondary">Light</span>
+                                                <span class="badge badge-secondary">Light</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/320" class="card-img" alt="placeholder">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Company Name</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </div>

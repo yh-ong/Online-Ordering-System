@@ -5,39 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Online_Ordering_System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Online_Ordering_System</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Order</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/List">List</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><i class="fas fa-shopping-cart"></i> My Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/List">Sign In</a>
+                        </li>
+                        <li class="nav-item ml-2">
+                            <button class="nav-link text-dark btn btn-outline-primary px-3" asp-area="" asp-page="/Index">Sign Up</button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; 2020 - Online_Ordering_System - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row footer-top">
+                <div class="col-3">
+                    <h3>Order</h3>
+                </div>
+                <div class="col-2">
+                    <h6>Learn More</h6>
+                    <ul>
+                        <li>About</li>
+                        <li>Delivery</li>
+                        <li>Privacy</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <h6>Add-ons</h6>
+                    <ul>
+                        <li>About</li>
+                        <li>Delivery</li>
+                        <li>Privacy</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <h6>Comapny</h6>
+                    <ul>
+                        <li>About</li>
+                        <li>Delivery</li>
+                        <li>Privacy</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <h6>Legal</h6>
+                    <ul>
+                        <li>About</li>
+                        <li>Delivery</li>
+                        <li>Privacy</li>
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+            &copy; @DateTime.Now.Year.ToString() - Order - <a asp-area="" asp-page="/Privacy">About</a> - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
