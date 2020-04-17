@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Online_Ordering_System.Pages
 {
-    public class ProductModel : PageModel
+    public class ShopModel : PageModel
     {
         public void OnGet()
         {
