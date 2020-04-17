@@ -9,32 +9,24 @@
             <div class="col-3">
                 <h5 class="mb-3">Filters</h5>
                 <form>
-                    @{
-                        for (var i = 0; i < 3; i++)
-                        {
-                            <div class="filter_row mb-4">
-                                <div class="form-group">
-                                    <h6 class="text-muted mb-3">Categories</h6>
+                    @if (Model.Categories.Count() > 0)
+                    {
+                        <div class="filter_row mb-4">
+                            <div class="form-group">
+                                <h6 class="text-muted mb-3">Categories</h6>
+                                @foreach (var item in Model.Categories)
+                                {
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                        <input type="checkbox" class="custom-control-input" id="checkName[]">
+                                        <label class="custom-control-label" for="checkName[]">@Html.DisplayFor(m => item.Name)</label>
                                     </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                                    </div>
-                                </div>
+                                }
                             </div>
-                        }
-
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No Category Found!</p>
                     }
                 </form>
             </div>
@@ -46,7 +38,7 @@
                     foreach (var item in items)
                     {
                         <div class="card mb-3">
-                            <a asp-area="" asp-page="/Product">
+                            <a asp-area="" asp-page="/Shop">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img src="https://via.placeholder.com/150" class="card-img" alt="placeholder">

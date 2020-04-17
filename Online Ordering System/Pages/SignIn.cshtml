@@ -1,0 +1,31 @@
+﻿@page
+@model Online_Ordering_System.Pages.SignInModel
+@{
+    Layout = "_SignLayout";
+    ViewData["title"] = "Sign In";
+}
+
+<div class="container">
+    <div class="row login-wrap">
+        <div class="col-md-7">
+            <h1>Login</h1>
+        </div>
+        <div class="col-md-5">
+            <div class="card login-card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

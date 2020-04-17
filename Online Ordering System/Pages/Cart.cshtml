@@ -1,0 +1,17 @@
+﻿@page
+@model Online_Ordering_System.Pages.CartModel
+@{
+    ViewData["title"] = "Cart";
+}
+
+<div class="container pt-5">
+    <div class="">
+        @if(Model.Carts.Count() > 0)
+        {
+            <p>Yes</p>
+        } else
+        {
+            <p>No Cart Available.</p>
+        }
+    </div>
+</div>

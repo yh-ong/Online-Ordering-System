@@ -1,0 +1,39 @@
+﻿@page
+@model Online_Ordering_System.Pages.SignUpModel
+@{
+    Layout = "_SignLayout";
+    ViewData["title"] = "Register";
+}
+
+<div class="container">
+    <div class="row login-wrap">
+        <div class="col-md-7">
+            <h1>@ViewData["title"]</h1>
+        </div>
+        <div class="col-md-5">
+            <div class="card login-card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputFirstname">First Name</label>
+                            <input type="email" class="form-control" id="inputFirstname" placeholder="Enter Firstname">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLastname">Last Name</label>
+                            <input type="email" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
