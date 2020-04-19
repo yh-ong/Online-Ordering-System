@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Online_Ordering_System.Model;
 
-namespace Online_Ordering_System.Pages.Seller
+namespace Online_Ordering_System.Pages.AdminPages
 {
     public class DashboardModel : PageModel
     {
@@ -17,23 +18,17 @@ namespace Online_Ordering_System.Pages.Seller
             _db = db;
         }
 
-        
+
         public void OnGet()
         {
-            /*
-            try
+            if (HttpContext.Session.GetString("AdminLoggedIn") != "1")
             {
-                if (!this.User.Identity.IsAuthenticated)
-                {
-                    this.RedirectToPage("/Login");
-                }
+                Response.Redirect("/AdminPages/Login");
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex);
+                Redirect("/AdminPages/Dashbard");
             }
-            this.Page(); 
-            */
         }
     }
 }

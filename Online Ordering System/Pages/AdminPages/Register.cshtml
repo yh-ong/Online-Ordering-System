@@ -1,0 +1,68 @@
+﻿@page
+@model Online_Ordering_System.Pages.AdminPages.RegisterModel
+@{
+    Layout = null;
+    ViewData["title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online_Ordering_System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row login-wrap">
+            <div class="col-md-3">
+                <h1>Register</h1>
+            </div>
+            <div class="col-md-9">
+                <div class="card login-card">
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <div class="form-group">
+                                <label for="inputFirstname">Shop Name</label>
+                                <input asp-for="Shops.ShopName" type="text" class="form-control" id="inputFirstname" placeholder="Enter shop name">
+                                <span asp-validation-for="Shops.ShopName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Shop Address</label>
+                                <input asp-for="Shops.ShopAddress" type="text" class="form-control" id="inputEmail" placeholder="Enter address">
+                                <span asp-validation-for="Shops.ShopAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">City</label>
+                                <input asp-for="Shops.ShopCity" type="text" class="form-control" id="inputPassword" placeholder="Enter city">
+                                <span asp-validation-for="Shops.ShopCity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">State</label>
+                                <input asp-for="Shops.ShopState" type="text" class="form-control" id="inputPassword" placeholder="Enter state">
+                                <span asp-validation-for="Shops.ShopState" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Postal Code</label>
+                                <input asp-for="Shops.ShopPostalCode" type="text" class="form-control" id="inputPassword" placeholder="Enter postal code">
+                                <span asp-validation-for="Shops.ShopPostalCode" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+
+                            <div class="text-center mt-3">
+                                <a asp-page="/Login">Already Have an Account</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

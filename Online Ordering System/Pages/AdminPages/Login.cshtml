@@ -1,0 +1,57 @@
+﻿@page
+@model Online_Ordering_System.Pages.AdminPages.LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Online_Ordering_System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row login-wrap">
+            <div class="col-md-7">
+                <h1>Login</h1>
+            </div>
+            <div class="col-md-5">
+                <div class="card login-card">
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <span class="text-danger">@Model.Message</span>
+
+                            <div class="form-group">
+                                <label for="inputEmail">Email address</label>
+                                <input asp-for="@Model.inputEmail" type="email" class="form-control" id="Email" placeholder="Enter email">
+                                <span asp-validation-for="@Model.inputEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Password</label>
+                                <input asp-for="@Model.inputPassword" type="text" class="form-control" id="Password" placeholder="Password">
+                                <span asp-validation-for="@Model.inputPassword" class="text-danger"></span>
+                            </div>
+                            <a asp-page="/Forgot">Forgot Password?</a>
+                            <button type="submit" class="btn btn-primary btn-block mt-3">Log In</button>
+
+                            <div class="text-center mt-3">
+                                <a asp-page="/SignUp">No Account Yet</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Online_Ordering_System.Pages.Seller.Product
+namespace Online_Ordering_System.Pages.PanelPages.Product
 {
-    public class IndexModel : PageModel
+    public class EditModel : PageModel
     {
         public void OnGet()
         {
