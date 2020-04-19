@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Online_Ordering_System.Model;
 
 namespace Online_Ordering_System
 {
@@ -23,6 +25,14 @@ namespace Online_Ordering_System
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure the access Database on appsetting.json file
+            services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add Session Service
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
             services.AddRazorPages();
         }
 
@@ -42,6 +52,9 @@ namespace Online_Ordering_System
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Session for Authentication
+            app.UseSession();
 
             app.UseRouting();
 
