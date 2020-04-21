@@ -9,7 +9,7 @@ namespace Online_Ordering_System.Model
     public class Category
     {
         [Key]
-        public int Id { get; set; }
+        public int CategoryID { get; set; }
 
         [Required]
         public string Name { get; set; }

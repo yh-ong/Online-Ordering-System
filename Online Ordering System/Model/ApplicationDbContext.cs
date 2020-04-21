@@ -10,7 +10,6 @@ namespace Online_Ordering_System.Model
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<User> Users { get; set; }
@@ -19,6 +18,8 @@ namespace Online_Ordering_System.Model
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Shop> Shops { get; set; }
 
     }
 }
