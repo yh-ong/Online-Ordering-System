@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/product.css" />
 </head>
 <body>
     <header>
@@ -17,27 +18,38 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/List">List</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><i class="fas fa-shopping-cart"></i> My Cart</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/List">Sign In</a>
-                        </li>
-                        <li class="nav-item ml-2">
-                            <button class="nav-link text-dark btn btn-outline-primary px-3" asp-area="" asp-page="/Index">Sign Up</button>
-                        </li>
-                    </ul>
-                </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Cart"><i class="fas fa-shopping-cart"></i></a>
+                            </li>
+                        </ul>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-primary ml-3 px-3" data-toggle="dropdown">Profile</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/AdminPages/Dashboard">Sell My Products</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-page="/SignOut">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/SignIn">Sign In</a>
+                            </li>
+                        </ul>
+                        <a class="btn btn-sm btn-outline-primary" asp-area="" asp-page="/SignUp">Sign Up</a>
+                    </div>
+                }
+
             </div>
         </nav>
     </header>
