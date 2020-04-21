@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,12 +29,33 @@ namespace Online_Ordering_System
             // Configure the access Database on appsetting.json file
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Add Session Service
+            // Session Service
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
-            services.AddRazorPages();
+            // Authorization and Authentication Service
+            // Determine wheather non-essential cookie request
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+            });
+
+            // Return to the Sign In (URL) If user is not authenticate
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieopts =>
+            {
+                cookieopts.LoginPath = "/SignIn";
+            });
+
+            services.AddRazorPages()
+                // Authorize person Who can access
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeFolder("/AdminPages/ProductList");
+                    options.Conventions.AuthorizePage("/AdminPages/Dashboard");
+                    options.Conventions.AllowAnonymousToPage("/Index");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +80,8 @@ namespace Online_Ordering_System
 
             app.UseRouting();
 
+            // Authentication and Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

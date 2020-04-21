@@ -13,16 +13,26 @@
         <div class="col-md-5">
             <div class="card login-card">
                 <div class="card-body">
-                    <form>
+                    <form method="post">
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <span class="text-danger">@Model.Message</span>
+                        
                         <div class="form-group">
                             <label for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+                            <input asp-for="Input.Email" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            <input asp-for="Input.Password" type="text" class="form-control" id="inputPassword" placeholder="Password">
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-4">Log In</button>
+                        <a asp-page="/Forgot">Forgot Password?</a>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Log In</button>
+
+                        <div class="text-center mt-3">
+                            <a asp-page="/SignUp">No Account Yet</a>
+                        </div>
                     </form>
                 </div>
             </div>
