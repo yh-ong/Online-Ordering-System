@@ -1,0 +1,8 @@
+﻿.product-card-details {
+    padding: .75rem .8rem;
+}
+
+.product-card-price span {
+    font-weight: 500;
+    font-size: 1.2rem;
+}

@@ -1,7 +1,50 @@
-﻿.login-wrap {
+﻿body {
+    /*overflow-y: hidden;*/
+}
+
+.login-wrap {
     margin: 10rem 0;
+}
+
+.header-navbar ul {
+    border-right: 1px solid #D3D3D3;
+    padding-right: .40rem;
 }
 
 .side-navbar {
     background-color: #fff;
+    padding: 0 1.2rem;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    left: 0;
+}
+
+.navbar-nav .nav-item a.nav-link {
+    font-weight: 600;
+    color: #808080;
+}
+
+.navbar-nav .nav-item i {
+    margin-right: 6px;
+}
+
+.inner-navbar-nav {
+    list-style: none;
+    padding-left: 1.2rem;
+}
+
+.inner-navbar-nav li {
+    padding: .3rem 0;
+}
+
+@media screen and (max-height: 450px) {
+    .side-navbar {
+        padding: 0 1rem;
+    }
+}
+
+.main-content {
+    /*margin-left: 200px;*/ /* Same as the width of the sidenav */
+    padding-top: 20px;
 }
