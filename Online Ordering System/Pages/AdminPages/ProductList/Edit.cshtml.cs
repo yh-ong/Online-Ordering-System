@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Online_Ordering_System.Pages.PanelPages.Product
+namespace Online_Ordering_System.Pages.AdminPages.ProductList
 {
     public class EditModel : PageModel
     {
