@@ -27,6 +27,8 @@ namespace Online_Ordering_System.Pages
 
         public User Users { get; set; }
 
+        public Shop Shops { get; set; }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -66,9 +68,9 @@ namespace Online_Ordering_System.Pages
             if (ModelState.IsValid)
             {
                 ReturnUrl = returnUrl;
-                var user = await AuthenticateUser(Input.Email, Input.Password);
+                var res = await AuthenticateUser(Input.Email, Input.Password);
 
-                if (user == null)
+                if (res == null)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
@@ -76,8 +78,9 @@ namespace Online_Ordering_System.Pages
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Email),
-                    new Claim("LastName", user.LastName)
+                    new Claim(ClaimTypes.Name, res.Email),
+                    new Claim("IdentityID", res.UserID.ToString()),
+                    new Claim(ClaimTypes.Role, res.Role)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
@@ -103,10 +106,20 @@ namespace Online_Ordering_System.Pages
             //if (string.Equals(email, "maria.rodriguez@contoso.com", StringComparison.OrdinalIgnoreCase))
             if (UserQuery != null)
             {
+                var SelectQuery = (from User in _db.Users
+                                  where User.Email == email
+                                  select User.UserID).FirstOrDefault();
+
+                // Role-Based Policy
+                var UserRole = (from User in _db.Users
+                                    where User.UserID == SelectQuery
+                                    select User.Role).FirstOrDefault();
+
                 return new User()
                 {
                     Email = email,
-                    LastName = "Maria Rodriguez"
+                    UserID = SelectQuery,
+                    Role = UserRole
                 };
             }
             else

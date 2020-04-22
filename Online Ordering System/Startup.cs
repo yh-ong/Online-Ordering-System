@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,17 +45,24 @@ namespace Online_Ordering_System
             });
 
             // Return to the Sign In (URL) If user is not authenticate
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieopts =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(configs =>
             {
-                cookieopts.LoginPath = "/SignIn";
+                configs.LoginPath = "/SignIn"; // If not authenticate
+                configs.AccessDeniedPath = "/AdminPages/Register"; // If policy not qualified
+            });
+
+            // Apply Policy
+            services.AddAuthorization(configs =>
+            {
+                configs.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
 
             services.AddRazorPages()
                 // Authorize person Who can access
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizeFolder("/AdminPages/ProductList");
-                    options.Conventions.AuthorizePage("/AdminPages/Dashboard");
+                    options.Conventions.AuthorizeFolder("/AdminPages/ProductList", "RequireAdminRole");
+                    options.Conventions.AuthorizePage("/AdminPages/Dashboard", "RequireAdminRole");
                     options.Conventions.AllowAnonymousToPage("/Index");
                 });
         }

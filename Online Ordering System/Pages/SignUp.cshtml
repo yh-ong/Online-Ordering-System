@@ -13,24 +13,33 @@
         <div class="col-md-5">
             <div class="card login-card">
                 <div class="card-body">
-                    <form>
+                    <form method="post">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="form-group">
-                            <label for="inputFirstname">First Name</label>
-                            <input type="email" class="form-control" id="inputFirstname" placeholder="Enter Firstname">
+                            <label asp-for="Users.FirstName"></label>
+                            <input asp-for="Users.FirstName" type="text" class="form-control" id="inputFirstname" placeholder="Enter Firstname">
+                            <span asp-validation-for="Users.FirstName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label for="inputLastname">Last Name</label>
-                            <input type="email" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                            <label asp-for="Users.LastName"></label>
+                            <input asp-for="Users.LastName" type="text" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                            <span asp-validation-for="Users.LastName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail">Email address</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
+                            <label asp-for="Users.Email"></label>
+                            <input asp-for="Users.Email" type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
+                            <span asp-validation-for="Users.Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            <label asp-for="Users.Password"></label>
+                            <input asp-for="Users.Password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            <span asp-validation-for="Users.Password" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+
+                        <div class="text-center mt-3">
+                            <a asp-page="/SignIn">Already Have an Account</a>
+                        </div>
                     </form>
                 </div>
             </div>
