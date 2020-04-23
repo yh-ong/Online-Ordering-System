@@ -8,9 +8,9 @@
     <div class="row">
         <div class="col-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Address</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Account</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
             </div>
         </div>
@@ -19,13 +19,113 @@
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div class="card">
                         <div class="card-body">
+                            <form method="post">
+                                <div class="form-group row">
+                                    <label asp-for="Users.FirstName" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.FirstName" type="text" class="form-control" id="inputFirstname" placeholder="email@example.com">
+                                        <span asp-validation-for="Users.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.LastName" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.LastName" type="text" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                                        <span asp-validation-for="Users.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.PhoneNumber" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.PhoneNumber" type="text" class="form-control" id="inputPhoneNumber" placeholder="Enter Contact Number">
+                                        <span asp-validation-for="Users.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block mt-4" type="submit">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group row">
+                                    <label asp-for="Users.Address" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.Address" type="text" class="form-control" id="inputFirstname" placeholder="email@example.com">
+                                        <span asp-validation-for="Users.Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.State" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.State" type="text" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                                        <span asp-validation-for="Users.State" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.City" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.City" type="text" class="form-control" id="inputPhoneNumber" placeholder="Enter Contact Number">
+                                        <span asp-validation-for="Users.City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.PostalCode" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.PostalCode" type="text" class="form-control" id="inputPhoneNumber" placeholder="Enter Contact Number">
+                                        <span asp-validation-for="Users.PostalCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.Country" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.Country" type="text" class="form-control" id="inputPhoneNumber" placeholder="Enter Contact Number">
+                                        <span asp-validation-for="Users.Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group row">
+                                    <label asp-for="Users.Email" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.Email" type="text" class="form-control" id="inputFirstname" placeholder="email@example.com">
+                                        <span asp-validation-for="Users.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.Password" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.Password" type="text" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                                        <span asp-validation-for="Users.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Users.Password" class="col-sm-4 col-form-label">Confirm Password</label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="Users.Password" type="text" class="form-control" id="inputLastname" placeholder="Enter Lastname">
+                                        <span asp-validation-for="Users.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block mt-4" type="submit">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <div class="card">
+                        <div class="card-body">
                             hello
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
             </div>
         </div>
     </div>

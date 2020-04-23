@@ -17,10 +17,12 @@ namespace Online_Ordering_System.Model
 
         [Required]
         [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Contact Number")]
         public string PhoneNumber { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 
         public string Address { get; set; }
@@ -28,6 +30,7 @@ namespace Online_Ordering_System.Model
         public string City { get; set; }
 
         [DataType(DataType.PostalCode)]
+        [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public DateTime DateAdded { get; set; }

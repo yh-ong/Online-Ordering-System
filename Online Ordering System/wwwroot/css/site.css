@@ -1,6 +1,19 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 60px;*/
+    /*background-color: #f7f7f8 !important;*/
+    background-color: #fff;
+    padding-bottom: 60px;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -31,7 +44,7 @@ a:hover {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-    font-size: 14px;
+    /*font-size: 14px;*/
 }
 @media (min-width: 768px) {
   html {
@@ -57,21 +70,10 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    /* Margin bottom by footer height */
-    /*margin-bottom: 60px;*/
-    background-color: #f7f7f8 !important;
-}
 .footer {
-  /*position: absolute;
-  bottom: 0;*/
-  margin-top: 60px;
-  padding-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  height: 60px;
   width: 100%;
   white-space: nowrap;
 }
@@ -90,10 +92,16 @@ body {
 }
 
 .footer ul li {
-    line-height: 2;
+    line-height: 2.5;
 }
 
-/* Timeline */
+.footer-bottom {
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+/* Timeline
+-------------------------------------------------- */
 .timeline {
     list-style: none;
     padding: 10px 0 10px;
@@ -101,41 +109,41 @@ body {
 }
 
 .timeline:before {
-top: 0;
-bottom: 0;
-position: absolute;
-content: " ";
-width: 3px;
-background-color: #eeeeee;
-left: 50%;
-margin-left: -1.5px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #eeeeee;
+    left: 50%;
+    margin-left: -1.5px;
 }
 
 .timeline > li {
-margin-bottom: 0x;
-position: relative;
+    margin-bottom: 0;
+    position: relative;
 }
 
 .timeline > li:before,
 .timeline > li:after {
-content: " ";
-display: table;
+    content: " ";
+    display: table;
 }
 
 .timeline > li:after {
-clear: both;
+    clear: both;
 }
 
 .timeline > li > .timeline-panel {
-width: 46%;
-float: left;
-border: 1px solid #d4d4d4;
-border-radius: 2px;
-padding: 10px;
-position: relative;
-background-color: #fff;
--webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    width: 46%;
+    float: left;
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
 
 .timeline > li > .timeline-panel:before {
@@ -185,19 +193,19 @@ box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     float: right;
 }
 
-    .timeline > li.timeline-inverted > .timeline-panel:before {
-        border-left-width: 0;
-        border-right-width: 15px;
-        left: -15px;
-        right: auto;
-    }
+.timeline > li.timeline-inverted > .timeline-panel:before {
+    border-left-width: 0;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
+}
 
-    .timeline > li.timeline-inverted > .timeline-panel:after {
-        border-left-width: 0;
-        border-right-width: 14px;
-        left: -14px;
-        right: auto;
-    }
+.timeline > li.timeline-inverted > .timeline-panel:after {
+    border-left-width: 0;
+    border-right-width: 14px;
+    left: -14px;
+    right: auto;
+}
 
 .timeline-badge.primary {
     background-color: #008CBA !important;
@@ -229,19 +237,17 @@ box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     margin-bottom: 0;
 }
 
-    .timeline-body > p + p {
-        margin-top: 5px;
-    }
+.timeline-body > p + p {
+    margin-top: 5px;
+}
 
-/* Home */
+/* Home
+----------------------------------- */
 .banner-container {
-    background-image: url("https://images.unsplash.com/photo-1548268520-f9340c2cf07b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1402&q=80");
+    background-color: #0099ff;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; 
-    /*background: #ffb347;*/ /* fallback for old browsers */
-    /*background: -webkit-linear-gradient(to right, #ffcc33, #ffb347);
-    background: linear-gradient(to right, #ffcc33, #ffb347); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
     width: 100%;
     padding: 16rem 0;
     position: relative;

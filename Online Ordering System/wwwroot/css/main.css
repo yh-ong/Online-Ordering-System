@@ -3,7 +3,7 @@
 }
 
 .login-wrap {
-    margin: 10rem 0;
+    margin: 8rem 0;
 }
 
 .header-navbar ul {
@@ -46,5 +46,15 @@
 
 .main-content {
     /*margin-left: 200px;*/ /* Same as the width of the sidenav */
-    padding-top: 20px;
+    padding-top: 50px;
+}
+
+/* Table */
+table {
+    background-color: #fff;
+}
+
+/* Form */
+form .row label {
+    text-align: right;
 }

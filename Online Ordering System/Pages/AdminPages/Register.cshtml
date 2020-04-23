@@ -19,44 +19,64 @@
 <body>
     <div class="container">
         <div class="row login-wrap">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h1>Register</h1>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card login-card">
                     <div class="card-body">
                         <form method="post">
                             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                             <div class="form-group">
                                 <label for="inputFirstname">Shop Name</label>
-                                <input asp-for="Shops.ShopName" type="text" class="form-control" id="inputFirstname" placeholder="Enter shop name">
-                                <span asp-validation-for="Shops.ShopName" class="text-danger"></span>
+                                <input asp-for="Shops.Name" type="text" class="form-control" id="inputFirstname" placeholder="Enter shop name">
+                                <span asp-validation-for="Shops.Name" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail">Shop Address</label>
-                                <input asp-for="Shops.ShopAddress" type="text" class="form-control" id="inputEmail" placeholder="Enter address">
-                                <span asp-validation-for="Shops.ShopAddress" class="text-danger"></span>
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.EmailAddress"></label>
+                                    <input asp-for="Shops.EmailAddress" type="text" class="form-control" id="inputPassword" placeholder="Enter postal code">
+                                    <span asp-validation-for="Shops.EmailAddress" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.PhoneNumber"></label>
+                                    <input asp-for="Shops.PhoneNumber" type="text" class="form-control" id="inputCountry" placeholder="Enter postal code">
+                                    <span asp-validation-for="Shops.PhoneNumber" class="text-danger"></span>
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="inputPassword">City</label>
-                                <input asp-for="Shops.ShopCity" type="text" class="form-control" id="inputPassword" placeholder="Enter city">
-                                <span asp-validation-for="Shops.ShopCity" class="text-danger"></span>
+                                <label asp-for="Shops.Address"></label>
+                                <input asp-for="Shops.Address" type="text" class="form-control" id="inputEmail" placeholder="Enter address">
+                                <span asp-validation-for="Shops.Address" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPassword">State</label>
-                                <input asp-for="Shops.ShopState" type="text" class="form-control" id="inputPassword" placeholder="Enter state">
-                                <span asp-validation-for="Shops.ShopState" class="text-danger"></span>
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.City"></label>
+                                    <input asp-for="Shops.City" type="text" class="form-control" id="inputPassword" placeholder="Enter city">
+                                    <span asp-validation-for="Shops.City" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.State"></label>
+                                    <input asp-for="Shops.State" type="text" class="form-control" id="inputPassword" placeholder="Enter state">
+                                    <span asp-validation-for="Shops.State" class="text-danger"></span>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPassword">Postal Code</label>
-                                <input asp-for="Shops.ShopPostalCode" type="text" class="form-control" id="inputPassword" placeholder="Enter postal code">
-                                <span asp-validation-for="Shops.ShopPostalCode" class="text-danger"></span>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.PostalCode"></label>
+                                    <input asp-for="Shops.PostalCode" type="text" class="form-control" id="inputPassword" placeholder="Enter postal code">
+                                    <span asp-validation-for="Shops.PostalCode" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Shops.Country"></label>
+                                    <input asp-for="Shops.Country" type="text" class="form-control" id="inputCountry" placeholder="Enter postal code">
+                                    <span asp-validation-for="Shops.Country" class="text-danger"></span>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
-
-                            <div class="text-center mt-3">
-                                <a asp-page="/Login">Already Have an Account</a>
-                            </div>
                         </form>
                     </div>
                 </div>

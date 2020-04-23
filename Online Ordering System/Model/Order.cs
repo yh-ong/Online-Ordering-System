@@ -13,9 +13,11 @@ namespace Online_Ordering_System.Model
         public int OrderID { get; set; }
 
         [Required]
+        [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
         [Required]
+        [Display(Name = "Shipped Date")]
         public DateTime ShippedDate { get; set; }
 
         public int UserID { get; set; }

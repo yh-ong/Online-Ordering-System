@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Order</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -24,13 +24,13 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Cart"><i class="fas fa-shopping-cart"></i></a>
+                                <a class="nav-link" asp-area="" asp-page="/Cart"><i class="fas fa-shopping-cart"></i> <span class="ml-2">My Cart</span> </a>
                             </li>
                         </ul>
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-primary ml-3 px-3" data-toggle="dropdown">Profile</button>
+                            <button class="btn btn-sm btn-outline-primary ml-3 px-3" data-toggle="dropdown">Hi, @Context.User.Identity.Name </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Profile">Profile</a>
                                 <a class="dropdown-item" asp-area="" asp-page="/AdminPages/Dashboard">Sell My Products</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="" asp-page="/SignOut">Log Out</a>
@@ -43,15 +43,29 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/SignIn">Sign In</a>
+                                <a class="nav-link" asp-area="" asp-page="/SignIn">Sign In</a>
                             </li>
                         </ul>
-                        <a class="btn btn-sm btn-outline-primary" asp-area="" asp-page="/SignUp">Sign Up</a>
+                        <a class="btn btn-sm btn-outline-primary ml-2 px-3" asp-area="" asp-page="/SignUp">Sign Up</a>
                     </div>
                 }
 
             </div>
         </nav>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow">
+            <div class="container">
+                <div class="col-12">
+                    <form class="form-row w-100">
+                        <div class="col-md-10">
+                            <input type="text" name="inputSearch" class="form-control" placeholder="Search for products, brands and shops" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-dark form-control">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </header>
     <div>
         <main role="main" class="pb-3">
@@ -59,49 +73,7 @@
         </main>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row footer-top">
-                <div class="col-3">
-                    <h3>Order</h3>
-                </div>
-                <div class="col-2">
-                    <h6>Learn More</h6>
-                    <ul>
-                        <li>About</li>
-                        <li>Delivery</li>
-                        <li>Privacy</li>
-                    </ul>
-                </div>
-                <div class="col-2">
-                    <h6>Add-ons</h6>
-                    <ul>
-                        <li>About</li>
-                        <li>Delivery</li>
-                        <li>Privacy</li>
-                    </ul>
-                </div>
-                <div class="col-2">
-                    <h6>Comapny</h6>
-                    <ul>
-                        <li>About</li>
-                        <li>Delivery</li>
-                        <li>Privacy</li>
-                    </ul>
-                </div>
-                <div class="col-2">
-                    <h6>Legal</h6>
-                    <ul>
-                        <li>About</li>
-                        <li>Delivery</li>
-                        <li>Privacy</li>
-                    </ul>
-                </div>
-            </div>
-            <hr/>
-            &copy; @DateTime.Now.Year.ToString() - Order - <a asp-area="" asp-page="/Privacy">About</a> - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_FooterLayout")
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -78,7 +78,8 @@ namespace Online_Ordering_System.Pages
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, res.Email),
+                    new Claim(ClaimTypes.Email, res.Email),
+                    new Claim(ClaimTypes.Name, res.LastName),
                     new Claim("IdentityID", res.UserID.ToString()),
                     new Claim(ClaimTypes.Role, res.Role)
                 };
@@ -110,6 +111,10 @@ namespace Online_Ordering_System.Pages
                                   where User.Email == email
                                   select User.UserID).FirstOrDefault();
 
+                var UserLastName = (from User in _db.Users
+                                    where User.UserID == SelectQuery
+                                    select User.LastName).FirstOrDefault();
+
                 // Role-Based Policy
                 var UserRole = (from User in _db.Users
                                     where User.UserID == SelectQuery
@@ -118,6 +123,7 @@ namespace Online_Ordering_System.Pages
                 return new User()
                 {
                     Email = email,
+                    LastName = UserLastName,
                     UserID = SelectQuery,
                     Role = UserRole
                 };

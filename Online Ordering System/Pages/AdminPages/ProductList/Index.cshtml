@@ -1,7 +1,6 @@
 ﻿@page
 @model Online_Ordering_System.Pages.AdminPages.ProductList.IndexModel
 @{
-    Layout = "_SellerLayout";
     ViewData["title"] = "List Product";
 }
 
@@ -15,14 +14,14 @@
 <div class="col-md-12 mt-3">
     @if (Model.Products.Count() > 0)
     {
-        <table class="table table-dark">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(m=>m.Products.FirstOrDefault().Name)
+                        @Html.DisplayNameFor(m => m.Products.FirstOrDefault().Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(m=>m.Products.FirstOrDefault().QtyInStock)
+                        @Html.DisplayNameFor(m => m.Products.FirstOrDefault().QtyInStock)
                     </th>
                     <th>Price</th>
                     <th>Action</th>
