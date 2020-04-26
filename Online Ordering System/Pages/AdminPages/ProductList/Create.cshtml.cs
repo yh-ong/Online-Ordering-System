@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +16,7 @@ namespace Online_Ordering_System.Pages.AdminPages.ProductList
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         public CreateModel(ApplicationDbContext db)
         {
@@ -38,6 +41,20 @@ namespace Online_Ordering_System.Pages.AdminPages.ProductList
         {
             if (ModelState.IsValid)
             {
+                
+                string uploadFilename = null;
+                if (uploadFilename != null)
+                {
+                    string uploadFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                    uploadFilename = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(Products.Image);
+
+                    string filePath = Path.Combine(uploadFolder, uploadFilename);
+                    using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        //Products.Image.CopyTo(fileStream);
+                    }
+                }
+
                 await _db.Products.AddAsync(Products);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
@@ -47,5 +64,6 @@ namespace Online_Ordering_System.Pages.AdminPages.ProductList
                 return Page();
             }
         }
+
     }
 }

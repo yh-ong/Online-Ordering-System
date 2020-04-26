@@ -19,6 +19,7 @@ namespace Online_Ordering_System.Pages.AdminPages.ProductList
             _db = db;
         }
 
+        [BindProperty]
         public Product Products { get; set; }
 
         public List<SelectListItem> Options { get; set; }
@@ -32,6 +33,27 @@ namespace Online_Ordering_System.Pages.AdminPages.ProductList
                 .ToListAsync();
 
             Options.Insert(0, new SelectListItem { Value = "", Text = "Choose" });
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var ProductDB = await _db.Products.FindAsync(Products.ProductID);
+                ProductDB.Name = Products.Name;
+                ProductDB.Description = Products.Description;
+                ProductDB.CategoryID = Products.CategoryID;
+                ProductDB.QtyInStock = Products.QtyInStock;
+                ProductDB.Price = Products.Price;
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                return Page();
+            }
         }
 
     }

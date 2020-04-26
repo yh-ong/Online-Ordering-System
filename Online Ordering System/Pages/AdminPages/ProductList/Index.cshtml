@@ -1,11 +1,11 @@
 ﻿@page
 @model Online_Ordering_System.Pages.AdminPages.ProductList.IndexModel
 @{
-    ViewData["title"] = "List Product";
+    ViewData["title"] = "Product List";
 }
 
 <div class="col-9">
-    <h3>Product List</h3>
+    <h3>@ViewData["Title"]</h3>
 </div>
 <div class="col-3">
     <a asp-page="Create" class="btn btn-outline-dark form-control">Create New Product</a>
@@ -23,7 +23,9 @@
                     <th>
                         @Html.DisplayNameFor(m => m.Products.FirstOrDefault().QtyInStock)
                     </th>
-                    <th>Price</th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Products.FirstOrDefault().Price)
+                    </th>
                     <th>Action</th>
                 </tr>
             </thead>
