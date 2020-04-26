@@ -17,8 +17,8 @@
                             @foreach (var item in Model.Categories)
                             {
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkName[]">
-                                    <label class="custom-control-label" for="checkName[]">@Html.DisplayFor(m => item.Name)</label>
+                                    <input type="checkbox" class="custom-control-input" id="@Html.DisplayFor(m => item.Name)" name="@Html.DisplayFor(m => item.Name)">
+                                    <label class="custom-control-label" for="@Html.DisplayFor(m => item.Name)">@Html.DisplayFor(m => item.Name)</label>
                                 </div>
                             }
                         </div>
@@ -33,15 +33,15 @@
 
         <div class="col-9 item-result">
             @{
-                int ProductRow = Model.Products.Count();
+                int ProductRow = Model.Shops.Count();
                 <p>1 - 25 of @ProductRow available</p>
             }
             @if (ProductRow > 0)
             {
-                foreach (var item in Model.Products)
+                foreach (var item in Model.Shops)
                 {
                     <div class="card mb-3">
-                        <a asp-area="" asp-page="Shop" asp-route-id="@item.ProductID">
+                        <a asp-area="" asp-page="Shop" asp-route-id="@item.ShopID">
                             <div class="row">
                                 <div class="col-md-4">
                                     <img src="https://via.placeholder.com/150" class="card-img" alt="placeholder">
@@ -49,11 +49,9 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title">@Html.DisplayFor(m => item.Name)</h5>
-                                        <p class="card-text">@Html.DisplayFor(m => item.Description)</p>
+                                        <p class="card-text">@Html.DisplayFor(m => item.Address), @Html.DisplayFor(m => item.City), @Html.DisplayFor(m => item.State)</p>
                                         <div class="item-list-footer">
-                                            <span class="badge badge-secondary">Light</span>
-                                            <span class="badge badge-secondary">Light</span>
-                                            <span class="badge badge-secondary">Light</span>
+                                            <span class="badge badge-warning">More Information</span>
                                         </div>
                                     </div>
                                 </div>

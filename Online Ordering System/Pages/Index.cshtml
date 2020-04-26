@@ -12,62 +12,27 @@
 </div>
 
 <section id="categories" class="container">
-    <div class="section-desc">
+    <div class="section-desc slideanim">
         <h2>Categories</h2>
-        <p>description</p>
+        <p>Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.</p>
     </div>
     <div class="row text-center">
-        <div class="col-3">
-            <a href="#">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://img.icons8.com/cute-clipart/64/000000/broccoli.png" />
-                        <h5>Vegetable</h5>
+        @foreach (var item in Model.Categories)
+        {
+            var imgURL = "https://img.icons8.com/cute-clipart/64/000000/"+item.Icon+".png";
+            <div class="col-3 slideanim">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="@imgURL" />
+                            <h5>@Html.DisplayFor(m => item.Name)</h5>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a href="#">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://img.icons8.com/cute-clipart/64/000000/thanksgiving.png" />
-                        <h5>Meat</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a href="#">
-                <div class="card">
-                    <div class="card-body">
-                            <img src="https://img.icons8.com/cute-clipart/64/000000/apple.png" />
-                            <h5>Fruit</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a href="#">
-                <div class="card">
-                    <div class="card-body">
-                            <img src="https://img.icons8.com/cute-clipart/64/000000/barbershop.png" />
-                            <h5>Shampoo</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a href="#">
-                <div class="card">
-                    <div class="card-body">
-                            <img src="https://img.icons8.com/cute-clipart/64/000000/nut.png" />
-                            <h5>Vegetable</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
+                </a>
+            </div>
+        }
+        
+        <div class="col-3 slideanim">
             <a asp-area="" asp-page="/List">
                 <div class="card">
                     <div class="card-body">
@@ -81,18 +46,18 @@
 </section>
 
 <section id="howitwork" class="container">
-    <div class="section-desc">
+    <div class="section-desc slideanim">
         <h2>How it Work</h2>
-        <p>description</p>
+        <p>Sapien elit in malesuada semper mi, id sollicitudin urna fermentum</p>
     </div>
-    <ul class="timeline">
+    <ul class="timeline slideanim">
         <li>
             <div class="timeline-badge primary">
                 <i class="fa fa-search"></i>
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">Office Added</h5>
+                    <h5 class="timeline-title">Finding you need</h5>
                 </div>
                 <div class="timeline-body">
                     <p>Permissions to perform work for the Fort Smith (FOR) office were added by Ric Flair.</p>
@@ -106,7 +71,7 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">Document Approved</h5>
+                    <h5 class="timeline-title">Pay item selected</h5>
                     <p>
                         <small class="text-muted">
                             <i class="fa fa-clock-o"></i>
@@ -125,7 +90,7 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">Data Change Rejected</h5>
+                    <h5 class="timeline-title">Vendor prepare the item</h5>
                     <p>
                         <small class="text-muted">
                             <i class="fa fa-clock-o"></i> 2 days ago via Rick Martel
@@ -143,7 +108,7 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">Data Change Requested</h5>
+                    <h5 class="timeline-title">Item have shipped</h5>
                     <p>
                         <small class="text-muted">
                             <i class="glyphicon glyphicon-time"></i> 3 days ago via Adrian Adonis
@@ -161,7 +126,7 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">W-9 Document Uploaded for Approval</h5>
+                    <h5 class="timeline-title">Collect your item</h5>
                     <p>
                         <small class="text-muted">
                             <i class="glyphicon glyphicon-time"></i> 4 days ago via Bob Orton
@@ -179,7 +144,7 @@
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h5 class="timeline-title">Vendor Approved</h5>
+                    <h5 class="timeline-title">Review and Like</h5>
                     <p>
                         <small class="text-muted">
                             <i class="glyphicon glyphicon-time"></i> 5 months ago via Randy Savage
@@ -195,8 +160,28 @@
 </section>
 
 <section id="testimonial" class="container">
-    <div class="section-desc">
+    <div class="section-desc slideanim">
         <h2>Testimonial</h2>
-        <p>description</p>
+        <p>Sapien elit in malesuada semper mi, id sollicitudin urna fermentum.</p>
+    </div>
+    <div class="owl-carousel owl-theme text-center slideanim">
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
+        <div class="item">
+            <img src="https://placehold.it/200x200/" alt="" />
+        </div>
     </div>
 </section>

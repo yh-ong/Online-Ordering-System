@@ -18,19 +18,17 @@ namespace Online_Ordering_System.Pages
             _db = db;                
         }
 
-        [BindProperty]
-        public Product Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
         
-        [BindProperty]
         public Shop Shops { get; set; }
 
         public async Task OnGet(int id)
         {
-            Products = await _db.Products.FindAsync(id);
+            Shops = await _db.Shops.FindAsync(id);
 
             // Get the product's ShopID
-            var _ShopID = Products.ShopID;
-            Shops = await _db.Shops.FindAsync(_ShopID);
+            var _ShopID = Shops.ShopID;
+            Products = await _db.Products.Where(p => p.ShopID == _ShopID).ToListAsync();
         }
     }
 }

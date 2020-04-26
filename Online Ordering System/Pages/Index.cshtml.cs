@@ -15,25 +15,38 @@ namespace Online_Ordering_System.Pages
 {
     public class IndexModel : PageModel
     {
+        /*
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
+        } */
+
+        public ApplicationDbContext _db;
+
+        public IndexModel(ApplicationDbContext db)
+        {
+            _db = db;
         }
+
+        public IEnumerable<Category> Categories { get; set; }
 
         public string BannerTitle { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             if (User.Identity.IsAuthenticated)
             {
                 //ID = User.Claims.First(c => c.Type.Equals("IdentityID", StringComparison.OrdinalIgnoreCase)).Value;
                 BannerTitle = "Welcome to Online Buy";
-            } else
+            } 
+            else
             {
                 BannerTitle = "Sign Up for Online Buy";
             }
+
+            Categories = await _db.Categories.ToListAsync();
         }
     }
 }

@@ -22,12 +22,12 @@ namespace Online_Ordering_System.Pages
 
         public IEnumerable<Category> Categories { get; set; }
 
-        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Shop> Shops { get; set; }
 
         public async Task OnGet()
         {
             Categories = await _db.Categories.ToListAsync();
-            Products = await _db.Products.ToListAsync();
+            Shops = await _db.Shops.ToListAsync();
         }
     }
 }
