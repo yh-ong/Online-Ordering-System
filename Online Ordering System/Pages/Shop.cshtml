@@ -10,11 +10,17 @@
         <div class="detail-info">
             <h1>@Html.DisplayFor(m => m.Shops.Name)</h1>
             <p>@Html.DisplayFor(m => m.Shops.Address), @Html.DisplayFor(m => m.Shops.PostalCode), @Html.DisplayFor(m => m.Shops.State), @Html.DisplayFor(m => m.Shops.City), @Html.DisplayFor(m => m.Shops.Country)</p>
-            <div class="item-list-footer">
-                <span class="badge badge-secondary">Light</span>
-                <span class="badge badge-secondary">Light</span>
-                <span class="badge badge-secondary">Light</span>
+            <div class="info-area">
+                <p>
+                    <span><i class="fas fa-phone-alt mr-1"></i> @Html.DisplayFor(m => m.Shops.PhoneNumber)</span>
+                    <span class="ml-3"><i class="far fa-envelope mr-1"></i> @Html.DisplayFor(m => m.Shops.EmailAddress)</span>
+                </p>
             </div>
+            @*<div class="item-list-footer">
+                <span class="badge badge-secondary">Light</span>
+                <span class="badge badge-secondary">Light</span>
+                <span class="badge badge-secondary">Light</span>
+            </div>*@
         </div>
 
         <nav>
@@ -26,7 +32,36 @@
     </div>
 </div>
 
-<div class="container">
+<script>
+    $(document).ready(function () {
+        let json = JSON.parse(localStorage.getItem("cartItems"));
+        let list = json["productItems"];
+        
+        var items = document.querySelectorAll('input[name="CartBtn"]');
+
+        var arrVal = [];
+        for (index in items) {
+            if (items[index].id != null) {
+                arrVal.push(items[index].id);
+
+                list.forEach(x => {
+                    if (items[index].id == x.ProductID) {
+                        $('#' + x.ProductID).removeClass('btn-primary').addClass('btn-success');
+                        $('#' + x.ProductID).attr('value', 'Cart Added');
+                        $('#' + x.ProductID).attr("disabled", true);
+                    }
+                });
+
+            }
+
+        }
+
+        console.log(JSON.stringify(arrVal));
+
+    });
+</script>
+
+<div class="container mb-5">
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="tab-content-detail">
@@ -34,34 +69,42 @@
                 @* List of Products *@
                 @if (Model.Products.Count() > 0)
                 {
-                    <form method="post" class="row">
+                    <form method="post" class="row" id="product">
                         @foreach (var item in Model.Products)
                         {
-                            <div class="col-sm-3 mb-3">
-                                <div class="card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product">
+                            <div class="col-md-3 mb-3">
+                                <div class="card product-card">
+                                    @if (item.Image != null)
+                                    {
+                                        <img src="@Url.Content("~/Uploads/" + item.ShopID + "/" + item.Image)" class="card-img-top" alt="Product">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/empty-image.jpg" class="card-img-top" alt="Product">
+                                    }
                                     <div class="product-card-details">
                                         <div class="product-card-name">@Html.DisplayFor(m => item.Name)</div>
                                         <div class="product-card-price">RM <span>@Html.DisplayFor(m => item.Price)</span></div>
+                                        <input asp-for="Input.ProductID" type="text" value="@item.ProductID" class="form-control form-control-sm" id="inputProductID" />
                                     </div>
                                     <div class="qty-card-details form-row">
-                                        <label class="col-3 col-form-label">Qty</label>
+                                        <input type="button" class="btn btn-primary cartbtn" value="Add to Cart" name="CartBtn" onclick="addCart(@item.ProductID, '@item.Name', @item.Price)" id="@item.ProductID" data-id="@item.ProductID" />
+                                        
+
+                                        @*<label class="col-3 col-form-label">Qty</label>
                                         <div class="col-8">
-                                            <select class="form-control" id="inputQuantity">
+                                            <select asp-for="Input.OrderQty" class="form-control" id="inputQuantity" name="inputQuantity" data-id="@item.ProductID">
                                                 <option value="0">0</option>
                                                 @for (var i = 1; i <= item.QtyInStock; i++)
                                                 {
                                                     <option value="@i">@i</option>
                                                 }
                                             </select>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
                         }
-                        <div class="pay-button-area col-md-12">
-                            <button type="button" onclick="Submit()" class="btn btn-primary float-right w-25">Add to Cart</button>
-                        </div>
                     </form>
                 }
                 else
@@ -92,6 +135,30 @@
 @section Scripts {
 
 <script type="text/javascript">
+
+    function addCart(id, name, price) {
+        var getStr = localStorage.getItem("cartItems");
+        var obj = {
+            "productItems": [
+                {
+                    "ProductID": id,
+                    "ProductName": name,
+                    "ProductPrice": price
+                },
+            ]
+        };
+
+        if (getStr != null) {
+            var cartArr = JSON.parse(getStr);
+            cartArr["productItems"].push({ "ProductID": id, "ProductName": name, "ProductPrice": price});
+            localStorage.setItem("cartItems", JSON.stringify(cartArr));
+        } else {
+            localStorage.setItem("cartItems", JSON.stringify(obj));
+        }
+
+        $('#' + id).removeClass('btn-primary').addClass('btn-success');
+        $('#' + id).attr('value', 'Cart Added');
+    }
 
     function Submit() {
         const qty = document.getElementById("inputQuantity").value;
