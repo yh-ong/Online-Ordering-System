@@ -18,6 +18,13 @@ namespace Online_Ordering_System.Pages
             _db = db;                
         }
 
+        public class InputModel
+        {
+            public int ProductID { get; set; }
+        }
+
+        public InputModel Input { get; set; }
+
         public IEnumerable<Product> Products { get; set; }
         
         public Shop Shops { get; set; }
