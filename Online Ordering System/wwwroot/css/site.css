@@ -68,6 +68,20 @@ button.accept-policy {
   line-height: inherit;
 }
 
+/*
+    search navbar
+*/
+
+.search-navbar-top {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 5;
+    display: block;
+    transition: top 0.3s;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 .footer {
@@ -182,7 +196,7 @@ button.accept-policy {
     left: 50%;
     margin-left: -25px;
     background-color: #999999;
-    z-index: 100;
+    z-index: 1;
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
     border-bottom-right-radius: 50%;
@@ -208,23 +222,23 @@ button.accept-policy {
 }
 
 .timeline-badge.primary {
-    background-color: #008CBA !important;
+    background-color: #0099ff !important;
 }
 
 .timeline-badge.success {
-    background-color: #43AC6A !important;
+    background-color: #00cba9 !important;
 }
 
 .timeline-badge.warning {
-    background-color: #E99002 !important;
+    background-color: #ffd700 !important;
 }
 
 .timeline-badge.danger {
-    background-color: #F04124 !important;
+    background-color: #ff5500 !important;
 }
 
 .timeline-badge.info {
-    background-color: #5BC0DE !important;
+    background-color: #a2d9ff !important;
 }
 
 .timeline-title {
@@ -268,6 +282,10 @@ button.accept-policy {
 /* Section */
 section {
     padding: 6rem 0;
+}
+
+section a {
+    color: #333;
 }
 
 .section-desc {
@@ -325,4 +343,47 @@ section {
 }
 .tab-content-detail {
     padding: 1rem;
+}
+
+/* 
+    Slide Animation 
+*/
+.slideanim {
+    visibility: hidden;
+}
+
+.slide {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    /* The duration of the animation */
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible;
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
 }

@@ -1,0 +1,56 @@
+﻿@page
+@model Online_Ordering_System.Pages.AdminPages.OrderList.IndexModel
+@{
+    ViewData["Title"] = "Order List";
+}
+
+<div class="col-9">
+    <h3>@ViewData["Title"]</h3>
+</div>
+<div class="col-3">
+    <a asp-page="Create" class="btn btn-outline-dark form-control">Create New Order</a>
+</div>
+
+<div class="col-md-12 mt-3">
+    @if (Model.OrderItems.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.OrderItems.FirstOrDefault().ProductID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.OrderItems.FirstOrDefault().Qty)
+                    </th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.ProductID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Qty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Price)
+                        </td>
+                        <td>
+                            <button asp-page-handler="Delete" asp-route-id="@item.ProductID" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                            <a asp-page="Edit" asp-route-id="@item.ProductID" class="btn btn-success btn-sm text-white">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Order available.</p>
+    }
+</div>
