@@ -23,8 +23,6 @@ $(window).scroll(function () {
 
 });
 
-
-
 $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
@@ -42,5 +40,25 @@ $('.owl-carousel').owlCarousel({
         1000: {
             items: 5
         }
+    }
+});
+
+$('.custom-file-input').change(function (e) {
+    e.preventDefault();
+    var file = e.target.files[0];
+    var fileExtension = file.name.replace(/^.*\./, '');
+    var output = document.getElementById('previewImg');
+    switch (fileExtension) {
+        case 'png': case 'jpeg': case 'jpg':
+            $(this).next('.custom-file-label').text(file.name);
+
+            output.src = URL.createObjectURL(file);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src)
+            }
+            break;
+        default:
+            $(this).next('.custom-file-label').text("Invalid Source File");
+            break;
     }
 });
