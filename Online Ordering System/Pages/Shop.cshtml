@@ -1,7 +1,30 @@
 ﻿@page
 @model Online_Ordering_System.Pages.ShopModel
 @{
-    ViewData["title"] = "Shop";
+    ViewData["Title"] = "Shop";
+}
+@section Scripts_Top {
+    <script>
+        $(document).ready(function () {
+            let json = JSON.parse(localStorage.getItem("cartItems"));
+            let list = json["productItems"];
+
+            var items = document.querySelectorAll('[name="CartBtn"]');
+
+            var arrVal = [];
+            for (index in items) {
+                if (items[index].id != null) {
+                    arrVal.push(items[index].id);
+                    list.forEach(x => {
+                        if (items[index].id == x.ProductID) {
+                            $('#' + x.ProductID).removeClass('btn-dark').addClass('btn-success').text('Cart Added');
+                        }
+                    });
+                }
+            }
+            console.log(JSON.stringify(arrVal));
+        });
+    </script>
 }
 
 <div class="detail-banner mb-4">
@@ -16,96 +39,58 @@
                     <span class="ml-3"><i class="far fa-envelope mr-1"></i> @Html.DisplayFor(m => m.Shops.EmailAddress)</span>
                 </p>
             </div>
-            @*<div class="item-list-footer">
-                    <span class="badge badge-secondary">Light</span>
-                    <span class="badge badge-secondary">Light</span>
-                    <span class="badge badge-secondary">Light</span>
-                </div>*@
         </div>
 
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings & Reviews <span class="badge badge-primary">9</span></a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ratings & Reviews <span class="badge badge-dark">9</span></a>
             </div>
         </nav>
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        let json = JSON.parse(localStorage.getItem("cartItems"));
-        let list = json["productItems"];
-
-        var items = document.querySelectorAll('input[name="CartBtn"]');
-
-        var arrVal = [];
-        for (index in items) {
-            if (items[index].id != null) {
-                arrVal.push(items[index].id);
-
-                list.forEach(x => {
-                    if (items[index].id == x.ProductID) {
-                        $('#' + x.ProductID).removeClass('btn-primary').addClass('btn-success');
-                        $('#' + x.ProductID).attr('value', 'Cart Added');
-                        $('#' + x.ProductID).attr("disabled", true);
-                    }
-                });
-
-            }
-
-        }
-
-        console.log(JSON.stringify(arrVal));
-
-    });
-</script>
-
 <div class="container mb-5">
     <div class="tab-content" id="nav-tabContent">
+
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="tab-content-detail">
-
                 @* List of Products *@
                 @if (Model.Products.Count() > 0)
                 {
-                    <form method="post" class="row" id="product">
+                    <div class="row">
                         @foreach (var item in Model.Products)
                         {
-                            <div class="col-md-3 mb-3">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb-3">
                                 <div class="card product-card">
-                                    @if (item.Image != null)
-                                    {
-                                        <img src="@Url.Content("~/Uploads/" + item.ShopID + "/" + item.Image)" class="card-img-top" alt="Product">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/img/empty-image.jpg" class="card-img-top" alt="Product">
-                                    }
-                                    <div class="product-card-details">
-                                        <div class="product-card-name">@Html.DisplayFor(m => item.Name)</div>
-                                        <div class="product-card-price">RM <span>@Html.DisplayFor(m => item.Price)</span></div>
-                                        <input asp-for="Input.ProductID" type="text" value="@item.ProductID" class="form-control form-control-sm" id="inputProductID" />
+                                    <div class="product-card-img">
+                                        @if (item.Image != null)
+                                        {
+                                            <img src="@Url.Content("~/Uploads/" + item.ShopID + "/" + item.Image)" class="card-img-top" alt="Product">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/empty-image.jpg" class="card-img-top" alt="Product">
+                                        }
                                     </div>
-                                    <div class="qty-card-details form-row">
-                                        <input type="button" class="btn btn-primary cartbtn" value="Add to Cart" name="CartBtn" onclick="addCart(@item.ProductID, '@item.Name', @item.Price)" id="@item.ProductID" data-id="@item.ProductID" />
-
-
-                                        @*<label class="col-3 col-form-label">Qty</label>
-                                            <div class="col-8">
-                                                <select asp-for="Input.OrderQty" class="form-control" id="inputQuantity" name="inputQuantity" data-id="@item.ProductID">
-                                                    <option value="0">0</option>
-                                                    @for (var i = 1; i <= item.QtyInStock; i++)
-                                                    {
-                                                        <option value="@i">@i</option>
-                                                    }
-                                                </select>
-                                            </div>*@
+                                    <div class="product-card-details">
+                                        <div class="product-card-name"><h5>@Html.DisplayFor(m => item.Name)</h5></div>
+                                        <div class="product-card-price"><span class="text-muted">$</span> <span class="amount">@Html.DisplayFor(m => item.Price)</span></div>
+                                        <div class="product-card-desc">@Html.DisplayFor(m => item.Description)</div>
+                                    </div>
+                                    <div class="product-card-cart">
+                                        <button type="button" name="CartBtn" class="btn-dark" onclick="addCart(@item.ProductID, '@item.Name', @item.Price)" id="@item.ProductID" data-id="@item.ProductID">Cart</button>
                                     </div>
                                 </div>
                             </div>
                         }
-                    </form>
+                    </div>
+
+                    <div class="notify">
+                        <div class="alert alert-success fade" id="alert-box" role="alert">
+                            Successful added to cart.
+                        </div>
+                    </div>
                 }
                 else
                 {
@@ -113,16 +98,17 @@
                 }
             </div>
         </div>
+
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="tab-content-detail">
                 @for (var i = 0; i < 10; i++)
                 {
-                    <div class="media review-card">
+                    <div class="media review-card slideanim">
                         <img src="https://placehold.it/25x25/" alt="profile-img" class="align-self-start mr-3" />
                         <div class="media-body">
                             <h5 class="mt-0">Alvin Lee</h5>
-                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                             <span class="text-muted">1 min ago</span>
+                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                         </div>
                     </div>
                 }
@@ -134,10 +120,10 @@
 
 @section Scripts {
 
-    <script type="text/javascript">
-
+    <script>
         function addCart(id, name, price) {
             var getStr = localStorage.getItem("cartItems");
+
             var obj = {
                 "productItems": [
                     {
@@ -156,28 +142,13 @@
                 localStorage.setItem("cartItems", JSON.stringify(obj));
             }
 
-            $('#' + id).removeClass('btn-primary').addClass('btn-success');
-            $('#' + id).attr('value', 'Cart Added');
+            $('#' + id).removeClass('btn-dark').addClass('btn-success').text('Cart Added');
+
+            $('#alert-box').addClass('show');
+            setInterval(function () {
+                $('#alert-box').removeClass('show');
+            }, 2500);
         }
-
-        function Submit() {
-            const qty = document.getElementById("inputQuantity").value;
-
-            if (qty > 0) {
-                Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
-                    'success'
-                );
-            } else {
-                Swal.fire(
-                    'Oops...',
-                    'Please select any quantity you want!',
-                    'error'
-                );
-            }
-        }
-
     </script>
 
 }

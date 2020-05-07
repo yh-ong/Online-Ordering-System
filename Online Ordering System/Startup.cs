@@ -67,6 +67,7 @@ namespace Online_Ordering_System
                     options.Conventions.AuthorizeFolder("/AdminPages/ProductList", "RequireAdminRole");
                     options.Conventions.AuthorizePage("/AdminPages/Dashboard", "RequireAdminRole");
                     options.Conventions.AuthorizePage("/Profile");
+                    options.Conventions.AuthorizePage("/Cart");
                     options.Conventions.AllowAnonymousToPage("/Index");
                 });
         }

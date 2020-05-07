@@ -15,7 +15,7 @@ namespace Online_Ordering_System.Pages
 
         public ShopModel(ApplicationDbContext db)
         {
-            _db = db;                
+            _db = db;
         }
 
         public class InputModel
@@ -26,8 +26,10 @@ namespace Online_Ordering_System.Pages
         public InputModel Input { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
-        
+
         public Shop Shops { get; set; }
+
+        public Cart Carts { get; set; }
 
         public async Task OnGet(int id)
         {
