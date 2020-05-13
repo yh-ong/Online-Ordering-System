@@ -39,6 +39,11 @@ namespace Online_Ordering_System
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            services.AddAntiforgery(options => {
+                options.HeaderName = "XSRF-TOKEN";
+                options.SuppressXFrameOptionsHeader = false;
+            });
+
             // Authorization and Authentication Service
             // Determine wheather non-essential cookie request
             services.Configure<CookiePolicyOptions>(options =>

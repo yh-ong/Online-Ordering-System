@@ -13,7 +13,9 @@ namespace Online_Ordering_System.Model
 
         [Required]
         public int ProductID { get; set; }
-        public string CartQty { get; set; }
-        public double CartPrice { get; set; }
+        public string QtyCart { get; set; }
+        public DateTime DateAdded { get; set; }
+
+        public int UserID { get; set; }
     }
 }

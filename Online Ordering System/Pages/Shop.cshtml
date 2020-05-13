@@ -3,29 +3,6 @@
 @{
     ViewData["Title"] = "Shop";
 }
-@section Scripts_Top {
-    <script>
-        $(document).ready(function () {
-            let json = JSON.parse(localStorage.getItem("cartItems"));
-            let list = json["productItems"];
-
-            var items = document.querySelectorAll('[name="CartBtn"]');
-
-            var arrVal = [];
-            for (index in items) {
-                if (items[index].id != null) {
-                    arrVal.push(items[index].id);
-                    list.forEach(x => {
-                        if (items[index].id == x.ProductID) {
-                            $('#' + x.ProductID).removeClass('btn-dark').addClass('btn-success').text('Cart Added');
-                        }
-                    });
-                }
-            }
-            console.log(JSON.stringify(arrVal));
-        });
-    </script>
-}
 
 <div class="detail-banner mb-4">
     <div class="container">
@@ -75,11 +52,11 @@
                                     </div>
                                     <div class="product-card-details">
                                         <div class="product-card-name"><h5>@Html.DisplayFor(m => item.Name)</h5></div>
-                                        <div class="product-card-price"><span class="text-muted">$</span> <span class="amount">@Html.DisplayFor(m => item.Price)</span></div>
+                                        <div class="product-card-price"><b class="text-muted">RM</b> <span class="amount">@Html.DisplayFor(m => item.Price)</span></div>
                                         <div class="product-card-desc">@Html.DisplayFor(m => item.Description)</div>
                                     </div>
                                     <div class="product-card-cart">
-                                        <button type="button" name="CartBtn" class="btn-dark" onclick="addCart(@item.ProductID, '@item.Name', @item.Price)" id="@item.ProductID" data-id="@item.ProductID">Cart</button>
+                                        <button type="button" name="CartBtn" onclick="addCart(@item.ProductID)" class="btn-dark" id="@item.ProductID" data-id="@item.ProductID">Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -118,36 +95,37 @@
     </div>
 </div>
 
+@Html.AntiForgeryToken()
+
 @section Scripts {
 
     <script>
-        function addCart(id, name, price) {
-            var getStr = localStorage.getItem("cartItems");
-
-            var obj = {
-                "productItems": [
-                    {
-                        "ProductID": id,
-                        "ProductName": name,
-                        "ProductPrice": price
-                    },
-                ]
-            };
-
-            if (getStr != null) {
-                var cartArr = JSON.parse(getStr);
-                cartArr["productItems"].push({ "ProductID": id, "ProductName": name, "ProductPrice": price });
-                localStorage.setItem("cartItems", JSON.stringify(cartArr));
-            } else {
-                localStorage.setItem("cartItems", JSON.stringify(obj));
-            }
-
-            $('#' + id).removeClass('btn-dark').addClass('btn-success').text('Cart Added');
-
-            $('#alert-box').addClass('show');
-            setInterval(function () {
-                $('#alert-box').removeClass('show');
-            }, 2500);
+        function addCart(id) {
+            $.ajax({
+                type: "POST",
+                headers: {
+                    "XSRF-TOKEN": $('input:hidden[name="__RequestVerificationToken"]').val()
+                },
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+                    "ProductID": id,
+                    "CurrentURL": window.location.pathname + window.location.search
+                }),
+                success: function (res) {
+                    if (res.redirectURL == null) {
+                        $('#alert-box').addClass('show');
+                        setInterval(function () {
+                            $('#alert-box').removeClass('show');
+                        }, 2500);
+                    } else {
+                        window.location.replace(res.redirectURL);
+                    }
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
         }
     </script>
 
